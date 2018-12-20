@@ -3,7 +3,7 @@ import pytest
 
 def pytest_addoption(parser):
     parser.addoption(
-        '--impl', action='store', default='docopt', help=''
+        '--impl', action='store', default='docopt_cli', help='What cli implementation to use?'
     )
 
 
