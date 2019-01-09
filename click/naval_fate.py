@@ -2,7 +2,7 @@ import click
 
 
 @click.group()
-@click.version_option()
+@click.version_option(version='1.0.0', message='%(version)s')
 def cli():
     """Naval Fate."""
 
