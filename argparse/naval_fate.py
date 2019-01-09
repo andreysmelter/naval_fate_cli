@@ -8,11 +8,12 @@ from api import mine_remove
 
 # create the top-level parser
 parser = argparse.ArgumentParser(description='Naval Fate')
-subparsers = parser.add_subparsers(dest="subparser_name")
+parser.add_argument('--version', action='version', version='1.0.0')
+subparsers = parser.add_subparsers(dest='subparser_name')
 
 # create the subparser for the "ship" command
 ship_parser = subparsers.add_parser('ship')
-ship_subparser = ship_parser.add_subparsers(dest="subcommand_name")
+ship_subparser = ship_parser.add_subparsers(dest='subcommand_name')
 
 # create the subparser for "ship new"
 ship_subparser_new = ship_subparser.add_parser('new', description='Creates a new ship.')
@@ -33,7 +34,7 @@ ship_subparser_shoot.add_argument('y', type=float, help='Y coordinate.')
 
 # create the subparser for the "mine" command
 mine_parser = subparsers.add_parser('mine')
-mine_subparser = mine_parser.add_subparsers(dest="subcommand_name")
+mine_subparser = mine_parser.add_subparsers(dest='subcommand_name')
 
 # create the subparser for the "mine set"
 mine_subparser_set = mine_subparser.add_parser('set')
