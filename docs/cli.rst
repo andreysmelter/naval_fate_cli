@@ -26,7 +26,7 @@ Conventions
 Commands
 ~~~~~~~~
 
-* Regular words typycally after program (entry point). 
+* Regular words typically after program (entry point).
 * Example:
     * ``ship``
     * ``mine``
@@ -75,7 +75,7 @@ Options
 
 * All elements are required by default, if not included 
   in brackets "[ ]". However, sometimes it is necessary to 
-  mark elements as required explicitly with parens 
+  mark elements as required explicitly with parenthesis
   "( )". For example, when you need to group 
   mutually-exclusive elements.
 * Example:
