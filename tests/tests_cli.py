@@ -2,7 +2,7 @@ import subprocess
 import pytest
 
 
-@pytest.mark.parametrize('interpreter, interpreter_option, cli_option', [
+@pytest.mark.parametrize('interpreter, interpreter_options, cli_options', [
     ('python', '-m', '--version')
 ])
 def test_version_cmd(impl, interpreter, interpreter_options, cli_options):
