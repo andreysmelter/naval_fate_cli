@@ -82,9 +82,3 @@ def cli(cmdargs):
     elif cmdargs.subparser_name == 'mine' and cmdargs.subcommand_name =='remove':
         mine_remove(x=cmdargs.x,
                     y=cmdargs.y)
-
-
-if __name__ == '__main__':
-
-    cmdargs = parser.parse_args()
-    cli(cmdargs)
