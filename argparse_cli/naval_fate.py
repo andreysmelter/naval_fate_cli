@@ -5,10 +5,11 @@ from .api import ship_move
 from .api import ship_shoot
 from .api import mine_set
 from .api import mine_remove
+from . import __version__
 
 # create the top-level parser
 parser = argparse.ArgumentParser(description='Naval Fate')
-parser.add_argument('--version', action='version', version='1.0.0')
+parser.add_argument('--version', action='version', version=__version__)
 subparsers = parser.add_subparsers(dest='subparser_name')
 
 # create the subparser for the "ship" command
