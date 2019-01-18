@@ -1,10 +1,10 @@
 import argparse
 
-from api import ship_new
-from api import ship_move
-from api import ship_shoot
-from api import mine_set
-from api import mine_remove
+from .api import ship_new
+from .api import ship_move
+from .api import ship_shoot
+from .api import mine_set
+from .api import mine_remove
 
 # create the top-level parser
 parser = argparse.ArgumentParser(description='Naval Fate')
