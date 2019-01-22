@@ -7,7 +7,7 @@ import pytest
 ])
 def test_version_cmd(impl, interpreter, interpreter_options, cli_options):
     cmd = [interpreter, interpreter_options, impl, cli_options]
-    result = subprocess.check_output(cmd)
+    result = subprocess.check_output(cmd, shell=False, stderr=subprocess.STDOUT)
     assert result.decode('utf-8').strip() == '1.0.0'
 
 
