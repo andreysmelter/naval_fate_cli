@@ -3,8 +3,8 @@ Naval Fate.
 
 Usage:
   naval_fate.py ship new <name>...
-  naval_fate.py ship <name> move <x> <y> [--speed=<kn>]
-  naval_fate.py ship <name> shoot <x> <y>
+  naval_fate.py ship move <name> <x> <y> [--speed=<kn>]
+  naval_fate.py ship shoot <name> <x> <y>
   naval_fate.py mine (set|remove) <x> <y> [--moored|--drifting]
   naval_fate.py -h | --help
   naval_fate.py --version
@@ -31,8 +31,8 @@ def cli(cmdargs):
 
     elif cmdargs['ship'] and cmdargs['move']:
         ship_move(ship=cmdargs['<name>'][0], 
-                  x=cmdargs['<x>'], 
-                  y=cmdargs['<y>'], 
+                  x=float(cmdargs['<x>']),
+                  y=float(cmdargs['<y>']),
                   speed=cmdargs['--speed'])
 
     elif cmdargs['ship'] and cmdargs['shoot']:
