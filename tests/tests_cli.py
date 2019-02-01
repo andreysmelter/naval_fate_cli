@@ -24,11 +24,11 @@ def test_ship_new_cmd(impl, interpreter, interpreter_options, cli_options):
 
 
 @pytest.mark.parametrize('interpreter, interpreter_options, cli_options', [
-    ('python', '-m', 'ship Guardian move 10 20')
+    ('python', '-m', 'ship move Guardian 10 20')
 ])
 def test_ship_move_cmd(impl, interpreter, interpreter_options, cli_options):
    cmd = [interpreter, interpreter_options, impl]
    cmd.extend(cli_options.split())
    result = subprocess.check_output(cmd, shell=False, stderr=subprocess.STDOUT)
-   outcomes = {'Moving ship Guardian to [10,20] with speed 10 KN'}
+   outcomes = {'Moving ship Guardian to [10.0,20.0] with speed 10 KN'}
    assert result.decode('utf-8').strip() in outcomes
