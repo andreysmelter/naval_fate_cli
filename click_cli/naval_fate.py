@@ -30,7 +30,7 @@ def ship_new(name):
               help='Speed in knots.')
 def ship_move(ship, x, y, speed):
     """Moves SHIP to the new location X,Y."""
-    click.echo('Moving ship {} to [{},{}] with speed {}'.format(ship, x, y, speed))
+    click.echo('Moving ship {} to [{},{}] with speed {} KN'.format(ship, x, y, speed))
 
 
 @ship.command('shoot')
