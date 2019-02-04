@@ -33,12 +33,4 @@ def test_ship_move_cmd(impl, interpreter, interpreter_options, cli_options):
     result = subprocess.check_output(cmd, shell=False, stderr=subprocess.STDOUT)
     outcomes = {'Moving ship Guardian to [10.0,20.0] with speed 10.0 KN',
                'Moving ship Guardian to [30.0,40.0] with speed 20.0 KN'}
-
-    a = result.decode('utf-8').strip()
-
-    print(repr(a))
-    print(a in outcomes)
-    for i in outcomes:
-        print(repr(i))
-
     assert result.decode('utf-8').strip() in outcomes
