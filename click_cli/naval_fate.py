@@ -26,7 +26,7 @@ def ship_new(name):
 @click.argument('ship')
 @click.argument('x', type=float)
 @click.argument('y', type=float)
-@click.option('--speed', metavar='KN', default=10,
+@click.option('--speed', metavar='KN', default=10, type=float,
               help='Speed in knots.')
 def ship_move(ship, x, y, speed):
     """Moves SHIP to the new location X,Y."""
