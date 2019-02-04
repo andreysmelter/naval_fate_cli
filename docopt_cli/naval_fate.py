@@ -33,7 +33,7 @@ def cli(cmdargs):
         ship_move(ship=cmdargs['<name>'][0], 
                   x=float(cmdargs['<x>']),
                   y=float(cmdargs['<y>']),
-                  speed=cmdargs['--speed'])
+                  speed=float(cmdargs['--speed']))
 
     elif cmdargs['ship'] and cmdargs['shoot']:
         ship_shoot(ship=cmdargs['<name>'][0],
