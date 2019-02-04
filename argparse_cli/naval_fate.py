@@ -25,7 +25,7 @@ ship_subparser_move = ship_subparser.add_parser('move', description='Moves ship 
 ship_subparser_move.add_argument('name', type=str, help='Name of the ship.')
 ship_subparser_move.add_argument('x', type=float, help='X coordinate.')
 ship_subparser_move.add_argument('y', type=float, help='Y coordinate.')
-ship_subparser_move.add_argument('--speed', type=float, help='Speed in knots [default: 10].', default=10)
+ship_subparser_move.add_argument('--speed', type=float, help='Speed in knots [default: 10].', default=10.0)
 
 # create the subparser for "ship shoot"
 ship_subparser_shoot = ship_subparser.add_parser('shoot', description='Makes ship fire to X,Y.')
