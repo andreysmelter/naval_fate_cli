@@ -32,5 +32,16 @@ def test_ship_move_cmd(impl, interpreter, interpreter_options, cli_options):
     cmd.extend(cli_options.split())
     result = subprocess.check_output(cmd, shell=False, stderr=subprocess.STDOUT)
     outcomes = {'Moving ship Guardian to [10.0,20.0] with speed 10.0 KN',
-               'Moving ship Guardian to [30.0,40.0] with speed 20.0 KN'}
+                'Moving ship Guardian to [30.0,40.0] with speed 20.0 KN'}
+    assert result.decode('utf-8').strip() in outcomes
+
+
+@pytest.mark.parametrize('interpreter, interpreter_options, cli_options', [
+    ('python', '-m', 'ship shoot Guardian 5 15')
+])
+def test_ship_shoot_cmd(impl, interpreter, interpreter_options, cli_options):
+    cmd = [interpreter, interpreter_options, impl]
+    cmd.extend(cli_options.split())
+    result = subprocess.check_output(cmd, shell=False, stderr=subprocess.STDOUT)
+    outcomes = {'Ship Guardian fires to [5.0,15.0]'}
     assert result.decode('utf-8').strip() in outcomes
