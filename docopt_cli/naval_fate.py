@@ -37,8 +37,8 @@ def cli(cmdargs):
 
     elif cmdargs['ship'] and cmdargs['shoot']:
         ship_shoot(ship=cmdargs['<name>'][0],
-                   x=cmdargs['<x>'], 
-                   y=cmdargs['<y>'])
+                   x=float(cmdargs['<x>']),
+                   y=float(cmdargs['<y>']))
 
     elif cmdargs['mine'] and cmdargs['set']:
         if cmdargs['--moored']:
