@@ -43,8 +43,8 @@ mine_subparser_set.add_argument('x', type=float, help='X coordinate.')
 mine_subparser_set.add_argument('y', type=float, help='Y coordinate.')
 
 mine_subparser_set_group = mine_subparser_set.add_mutually_exclusive_group()
-mine_subparser_set_group.add_argument('--moored', action='store_true', default=True, help='Moored (anchored) mine.')
-mine_subparser_set_group.add_argument('--drifting', action='store_true', help='Drifting mine.')
+mine_subparser_set_group.add_argument('--drifting', action='store_true', default=True, help='Drifting mine.')
+mine_subparser_set_group.add_argument('--moored', action='store_true', help='Moored (anchored) mine.')
 
 # create the subparser for the "mine remove"
 mine_subparser_remove = mine_subparser.add_parser('remove')
