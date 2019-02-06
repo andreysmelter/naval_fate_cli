@@ -45,3 +45,14 @@ def test_ship_shoot_cmd(impl, interpreter, interpreter_options, cli_options):
     result = subprocess.check_output(cmd, shell=False, stderr=subprocess.STDOUT)
     outcomes = {'Ship Guardian fires to [5.0,15.0]'}
     assert result.decode('utf-8').strip() in outcomes
+
+
+@pytest.mark.parametrize('interpreter, interpreter_options, cli_options', [
+    ('python', '-m', 'mine set 10 20')
+])
+def test_ship_shoot_cmd(impl, interpreter, interpreter_options, cli_options):
+    cmd = [interpreter, interpreter_options, impl]
+    cmd.extend(cli_options.split())
+    result = subprocess.check_output(cmd, shell=False, stderr=subprocess.STDOUT)
+    outcomes = {'Set drifting mine at [10.0,20.0]'}
+    assert result.decode('utf-8').strip() in outcomes
