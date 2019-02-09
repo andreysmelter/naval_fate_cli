@@ -51,5 +51,5 @@ def cli(cmdargs):
                  ty=mine_type)
 
     elif cmdargs['mine'] and cmdargs['remove']:
-        mine_remove(x=cmdargs['<x>'],
-                    y=cmdargs['<y>'])
+        mine_remove(x=float(cmdargs['<x>']),
+                    y=float(cmdargs['<y>']))
