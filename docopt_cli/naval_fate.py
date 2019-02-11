@@ -40,16 +40,18 @@ def cli(cmdargs):
                    x=float(cmdargs['<x>']),
                    y=float(cmdargs['<y>']))
 
-    elif cmdargs['mine'] and cmdargs['set']:
+    elif cmdargs['mine']:
         if cmdargs['--moored']:
             mine_type = 'moored'
         else:
             mine_type = 'drifting'
 
-        mine_set(x=float(cmdargs['<x>']),
-                 y=float(cmdargs['<y>']),
-                 ty=mine_type)
+        if cmdargs['set']:
+            mine_set(x=float(cmdargs['<x>']),
+                     y=float(cmdargs['<y>']),
+                     ty=mine_type)
 
-    elif cmdargs['mine'] and cmdargs['remove']:
-        mine_remove(x=float(cmdargs['<x>']),
-                    y=float(cmdargs['<y>']))
+        elif cmdargs['mine'] and cmdargs['remove']:
+            mine_remove(x=float(cmdargs['<x>']),
+                        y=float(cmdargs['<y>']),
+                        ty=mine_type)
