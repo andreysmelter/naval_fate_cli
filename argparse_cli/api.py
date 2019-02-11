@@ -19,6 +19,6 @@ def mine_set(x, y, ty):
     print('Set {} mine at [{},{}]'.format(ty, x, y))
 
 
-def mine_remove(x, y):
+def mine_remove(x, y, ty):
     """Removes a mine at a specific coordinate."""
-    print('Removed mine at [{},{}]'.format(x, y))
+    print('Removed {} mine at [{},{}]'.format(ty, x, y))
