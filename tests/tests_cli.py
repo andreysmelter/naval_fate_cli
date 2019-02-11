@@ -51,7 +51,9 @@ def test_ship_shoot_cmd(impl, interpreter, interpreter_options, cli_options):
     ('python', '-m', 'mine set 10 20'),
     ('python', '-m', 'mine set 10 20 --drifting'),
     ('python', '-m', 'mine set 10 20 --moored'),
-    ('python', '-m', 'mine remove 10 20')
+    ('python', '-m', 'mine remove 10 20'),
+    ('python', '-m', 'mine set 10 20 --drifting'),
+    ('python', '-m', 'mine set 10 20 --moored')
 ])
 def test_ship_shoot_cmd(impl, interpreter, interpreter_options, cli_options):
     cmd = [interpreter, interpreter_options, impl]
@@ -59,5 +61,6 @@ def test_ship_shoot_cmd(impl, interpreter, interpreter_options, cli_options):
     result = subprocess.check_output(cmd, shell=False, stderr=subprocess.STDOUT)
     outcomes = {'Set drifting mine at [10.0,20.0]',
                 'Set moored mine at [10.0,20.0]',
-                'Removed mine at [10.0,20.0]'}
+                'Removed drifting mine at [10.0,20.0]',
+                'Removed moored mine at [10.0,20.0]'}
     assert result.decode('utf-8').strip() in outcomes
