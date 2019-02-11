@@ -51,10 +51,10 @@ def mine():
 @click.argument('x', type=float)
 @click.argument('y', type=float)
 @click.option('ty', '--moored', flag_value='moored',
-              help='Moored (anchored) mine. Default.')
+              help='Moored (anchored) mine.')
 @click.option('ty', '--drifting', flag_value='drifting',
               default=True,
-              help='Drifting mine.')
+              help='Drifting mine. Default.')
 def mine_set(x, y, ty):
     """Sets a mine at a specific coordinate."""
     click.echo('Set {} mine at [{},{}]'.format(ty, x, y))
@@ -63,6 +63,11 @@ def mine_set(x, y, ty):
 @mine.command('remove')
 @click.argument('x', type=float)
 @click.argument('y', type=float)
-def mine_remove(x, y):
+@click.option('ty', '--moored', flag_value='moored',
+              help='Moored (anchored) mine.')
+@click.option('ty', '--drifting', flag_value='drifting',
+              default=True,
+              help='Drifting mine. Default.')
+def mine_remove(x, y, ty):
     """Removes a mine at a specific coordinate."""
-    click.echo('Removed mine at [{},{}]'.format(x, y))
+    click.echo('Removed {} mine at [{},{}]'.format(ty, x, y))
