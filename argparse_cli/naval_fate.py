@@ -51,6 +51,10 @@ mine_subparser_remove = mine_subparser.add_parser('remove')
 mine_subparser_remove.add_argument('x', type=float, help='X coordinate.')
 mine_subparser_remove.add_argument('y', type=float, help='Y coordinate.')
 
+mine_subparser_remove_group = mine_subparser_remove.add_mutually_exclusive_group()
+mine_subparser_remove_group.add_argument('--drifting', action='store_true', default=True, help='Drifting mine.')
+mine_subparser_remove_group.add_argument('--moored', action='store_true', help='Moored (anchored) mine.')
+
 
 def cli(cmdargs):
     
@@ -68,17 +72,19 @@ def cli(cmdargs):
                    x=cmdargs.x, 
                    y=cmdargs.y)
 
-    elif cmdargs.subparser_name == 'mine' and cmdargs.subcommand_name =='set':
+    elif cmdargs.subparser_name == 'mine':
 
         if cmdargs.drifting:
             mine_type = 'drifting'
         else:
             mine_type = 'moored'
 
-        mine_set(x=cmdargs.x,
-                 y=cmdargs.y,
-                 ty=mine_type)
+        if cmdargs.subcommand_name == 'set':
+            mine_set(x=cmdargs.x,
+                     y=cmdargs.y,
+                     ty=mine_type)
 
-    elif cmdargs.subparser_name == 'mine' and cmdargs.subcommand_name =='remove':
-        mine_remove(x=cmdargs.x,
-                    y=cmdargs.y)
+        elif cmdargs.subcommand_name =='remove':
+            mine_remove(x=cmdargs.x,
+                        y=cmdargs.y,
+                        ty=mine_type)
