@@ -47,20 +47,20 @@ def test_ship_shoot_cmd(impl, interpreter, interpreter_options, cli_options):
     assert result.decode('utf-8').strip() in outcomes
 
 
-@pytest.mark.parametrize('interpreter, interpreter_options, cli_options', [
-    ('python', '-m', 'mine set 10 20'),
-    ('python', '-m', 'mine set 10 20 --drifting'),
-    ('python', '-m', 'mine set 10 20 --moored'),
-    ('python', '-m', 'mine remove 10 20'),
-    ('python', '-m', 'mine set 10 20 --drifting'),
-    ('python', '-m', 'mine set 10 20 --moored')
+@pytest.mark.parametrize('interpreter, interpreter_options, cli_options, test_case', [
+    ('python', '-m', 'mine set 10 20', '1'),
+    ('python', '-m', 'mine set 10 20 --drifting', '1'),
+    ('python', '-m', 'mine set 10 20 --moored', '2'),
+    ('python', '-m', 'mine remove 10 20', '3'),
+    ('python', '-m', 'mine remove 10 20 --drifting', '3'),
+    ('python', '-m', 'mine remove 10 20 --moored', '4')
 ])
-def test_ship_shoot_cmd(impl, interpreter, interpreter_options, cli_options):
+def test_ship_shoot_cmd(impl, interpreter, interpreter_options, cli_options, test_case):
     cmd = [interpreter, interpreter_options, impl]
     cmd.extend(cli_options.split())
     result = subprocess.check_output(cmd, shell=False, stderr=subprocess.STDOUT)
-    outcomes = {'Set drifting mine at [10.0,20.0]',
-                'Set moored mine at [10.0,20.0]',
-                'Removed drifting mine at [10.0,20.0]',
-                'Removed moored mine at [10.0,20.0]'}
-    assert result.decode('utf-8').strip() in outcomes
+    outcomes = {'1': 'Set drifting mine at [10.0,20.0]',
+                '2': 'Set moored mine at [10.0,20.0]',
+                '3': 'Removed drifting mine at [10.0,20.0]',
+                '4': 'Removed moored mine at [10.0,20.0]'}
+    assert result.decode('utf-8').strip() == outcomes[test_case]
