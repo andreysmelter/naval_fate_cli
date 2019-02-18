@@ -74,10 +74,10 @@ def cli(cmdargs):
 
     elif cmdargs.subparser_name == 'mine':
 
-        if cmdargs.drifting:
-            mine_type = 'drifting'
-        else:
+        if cmdargs.moored:
             mine_type = 'moored'
+        else:
+            mine_type = 'drifting'
 
         if cmdargs.subcommand_name == 'set':
             mine_set(x=cmdargs.x,
