@@ -36,15 +36,15 @@ def test_ship_move_cmd(impl, interpreter, interpreter_options, cli_options):
     assert result.decode('utf-8').strip() in outcomes
 
 
-@pytest.mark.parametrize('interpreter, interpreter_options, cli_options', [
-    ('python', '-m', 'ship shoot Guardian 5 15')
+@pytest.mark.parametrize('interpreter, interpreter_options, cli_options, test_case', [
+    ('python', '-m', 'ship shoot Guardian 5 15', '1')
 ])
-def test_ship_shoot_cmd(impl, interpreter, interpreter_options, cli_options):
+def test_ship_shoot_cmd(impl, interpreter, interpreter_options, cli_options, test_case):
     cmd = [interpreter, interpreter_options, impl]
     cmd.extend(cli_options.split())
     result = subprocess.check_output(cmd, shell=False, stderr=subprocess.STDOUT)
-    outcomes = {'Ship Guardian fires to [5.0,15.0]'}
-    assert result.decode('utf-8').strip() in outcomes
+    outcomes = {'1': 'Ship Guardian fires to [5.0,15.0]'}
+    assert result.decode('utf-8').strip() == outcomes[test_case]
 
 
 @pytest.mark.parametrize('interpreter, interpreter_options, cli_options, test_case', [
