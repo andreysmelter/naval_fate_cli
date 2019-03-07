@@ -23,17 +23,17 @@ def test_ship_new_cmd(impl, interpreter, interpreter_options, cli_options):
     assert list_of_ships == ['Guardian'] or list_of_ships == ['Guardian1', 'Guardian2']
 
 
-@pytest.mark.parametrize('interpreter, interpreter_options, cli_options', [
-    ('python', '-m', 'ship move Guardian 10 20'),
-    ('python', '-m', 'ship move Guardian 30 40 --speed=20'),
+@pytest.mark.parametrize('interpreter, interpreter_options, cli_options, test_case', [
+    ('python', '-m', 'ship move Guardian 10 20', '1'),
+    ('python', '-m', 'ship move Guardian 30 40 --speed=20', '2')
 ])
-def test_ship_move_cmd(impl, interpreter, interpreter_options, cli_options):
+def test_ship_move_cmd(impl, interpreter, interpreter_options, cli_options, test_case):
     cmd = [interpreter, interpreter_options, impl]
     cmd.extend(cli_options.split())
     result = subprocess.check_output(cmd, shell=False, stderr=subprocess.STDOUT)
-    outcomes = {'Moving ship Guardian to [10.0,20.0] with speed 10.0 KN',
-                'Moving ship Guardian to [30.0,40.0] with speed 20.0 KN'}
-    assert result.decode('utf-8').strip() in outcomes
+    outcomes = {'1': 'Moving ship Guardian to [10.0,20.0] with speed 10.0 KN',
+                '2': 'Moving ship Guardian to [30.0,40.0] with speed 20.0 KN'}
+    assert result.decode('utf-8').strip() == outcomes[test_case]
 
 
 @pytest.mark.parametrize('interpreter, interpreter_options, cli_options, test_case', [
