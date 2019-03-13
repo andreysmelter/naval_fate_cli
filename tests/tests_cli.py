@@ -19,11 +19,9 @@ def test_ship_new_cmd(impl, interpreter, interpreter_options, cli_options, test_
     cmd = [interpreter, interpreter_options, impl]
     cmd.extend(cli_options.split())
     result = subprocess.check_output(cmd, shell=False, stderr=subprocess.STDOUT)
-    outcomes = {'1': ['Guardian'],
-                '2': ['Guardian1', 'Guardian2']}
-
-    list_of_ships = [word for word in result.decode('utf-8').split() if word.startswith('Guardian')]
-    assert list_of_ships == outcomes[test_case]
+    outcomes = {'1': 'Created ship Guardian',
+                '2': 'Created ship Guardian1\nCreated ship Guardian2'}
+    assert result.decode('utf-8').strip() == outcomes[test_case]
 
 
 @pytest.mark.parametrize('interpreter, interpreter_options, cli_options, test_case', [
