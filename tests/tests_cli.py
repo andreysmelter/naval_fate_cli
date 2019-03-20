@@ -72,7 +72,8 @@ def test_ship_shoot_cmd(impl, interpreter, interpreter_options, cli_options, tes
     ('python', '-m', 'ship new Guardian', '2'),
     ('python', '-m', 'ship new Guardian1 Guardian2', '3'),
     ('python', '-m', 'ship move Guardian 10 20', '4'),
-    ('python', '-m', 'ship move Guardian 30 40 --speed=20', '5')
+    ('python', '-m', 'ship move Guardian 30 40 --speed=20', '5'),
+    ('python', '-m', 'ship shoot Guardian 5 15', '6')
 ])
 def test_combined_cmd(impl, interpreter, interpreter_options, cli_options, test_case):
     cmd = [interpreter, interpreter_options, impl]
@@ -83,6 +84,7 @@ def test_combined_cmd(impl, interpreter, interpreter_options, cli_options, test_
         '2': 'Created ship Guardian',
         '3': 'Created ship Guardian1\nCreated ship Guardian2',
         '4': 'Moving ship Guardian to [10.0,20.0] with speed 10.0 KN',
-        '5': 'Moving ship Guardian to [30.0,40.0] with speed 20.0 KN'
+        '5': 'Moving ship Guardian to [30.0,40.0] with speed 20.0 KN',
+        '6': 'Ship Guardian fires to [5.0,15.0]'
     }
     assert result.decode('utf-8').strip() == outcomes[test_case]
