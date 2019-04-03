@@ -76,8 +76,10 @@ def test_mine_set_remove_cmd(impl, interpreter, interpreter_options, cli_options
     ('python', '-m', 'ship shoot Guardian 5 15', '6'),
     ('python', '-m', 'mine set 10 20', '7'),
     ('python', '-m', 'mine set 10 20 --drifting', '7'),
-    ('python', '-m', 'mine set 10 20 --moored', '8')
-
+    ('python', '-m', 'mine set 10 20 --moored', '8'),
+    ('python', '-m', 'mine remove 10 20', '9'),
+    ('python', '-m', 'mine remove 10 20 --drifting', '9'),
+    ('python', '-m', 'mine remove 10 20 --moored', '10')
 ])
 def test_combined_cmd(impl, interpreter, interpreter_options, cli_options, test_case):
     cmd = [interpreter, interpreter_options, impl]
@@ -91,6 +93,8 @@ def test_combined_cmd(impl, interpreter, interpreter_options, cli_options, test_
         '5': 'Moving ship Guardian to [30.0,40.0] with speed 20.0 KN',
         '6': 'Ship Guardian fires to [5.0,15.0]',
         '7': 'Set drifting mine at [10.0,20.0]',
-        '8': 'Set moored mine at [10.0,20.0]'
+        '8': 'Set moored mine at [10.0,20.0]',
+        '9': 'Removed drifting mine at [10.0,20.0]',
+        '10': 'Removed moored mine at [10.0,20.0]'
     }
     assert result.decode('utf-8').strip() == outcomes[test_case]
